@@ -2,7 +2,7 @@
 @section('dashboard-content')
 
     @if(isset($state))
-        @include('layouts.crud.messages-state', ['state' => $state])
+        @include($view_prefix . 'layouts.crud.messages-state', ['state' => $state])
     @endif
     
     @if(!isset($config['create_option']) || $config['create_option'] === true)
