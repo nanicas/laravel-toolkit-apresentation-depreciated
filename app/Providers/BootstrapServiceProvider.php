@@ -29,25 +29,25 @@ class BootstrapServiceProvider extends ServiceProvider
         $src = __DIR__ . '/../..';
         
         $this->publishes([
-            $src.'/resources/css' => resource_path('template/css'),
-        ], 'template_core:resources');
+            $src.'/resources/css' => resource_path('apresentation_template/css'),
+        ], 'apresentation_template:resources');
         
         $this->publishes([
-            $src.'/resources/js' => resource_path('template/js'),
-        ], 'template_core:resources');
+            $src.'/resources/js' => resource_path('apresentation_template/js'),
+        ], 'apresentation_template:resources');
         
         $this->publishes([
-            $src.'/resources/sass' => resource_path('template/sass'),
-        ], 'template_core:resources');
+            $src.'/resources/sass' => resource_path('apresentation_template/sass'),
+        ], 'apresentation_template:resources');
         
         $this->publishes([
-            $src.'/resources/views' => resource_path('views/vendor/toolkit_apresentation'),
-        ], 'toolkit_apresentation:views');
+            $src.'/resources/views' => resource_path('views/vendor/apresentation_template'),
+        ], 'apresentation_template:views');
         
         $this->publishes([
-            $src . '/public' => public_path('toolkit_apresentation')
-        ], 'toolkit_apresentation:public');
+            $src . '/public' => public_path('apresentation_template')
+        ], 'apresentation_template:public');
         
-        $this->loadViewsFrom(resource_path('views/vendor/toolkit_apresentation'), 'toolkit_apresentation');
+        $this->loadViewsFrom(resource_path('views/vendor/apresentation_template'), 'apresentation_template');
     }
 }
