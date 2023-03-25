@@ -14,19 +14,21 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('vendor/ladda/ladda.min.css') }}" rel="stylesheet">
+    <link href="{{ asset($packaged_assets_prefix . '/vendor/ladda/ladda.min.css') }}" rel="stylesheet">
+    <!--
     <link href="{{ asset('css/app_framework.css') }}" rel="stylesheet">
-    <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    -->
     <!-- Scripts -->
-    @vite(['resources/apresentation_template/sass/app.scss'])
-    
-    @yield('css')
+    @vite(['resources/presentation_template/sass/app.scss'])
 
     @if(!empty($assets['css']))
         @foreach ($assets['css'] as $css)
             <link rel="stylesheet" href="{{ asset($css) }}"></link>
         @endforeach
     @endif
+    
+    @yield('css')
 </head>
 <body>
     <div id="app">
@@ -91,20 +93,20 @@
         </main>
     </div>
 </body>
-<!-- Scripts -->
-<script type="text/javascript" src="{{ asset('js/app_framework.js') }}" defer></script>
-<script type="text/javascript" src="{{ asset('vendor/ladda/spin.min.js') }}" defer></script>
-<script type="text/javascript" src="{{ asset('vendor/ladda/ladda.min.js') }}" defer></script>
-<!--<script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>-->
-<!-- Scripts -->
-@vite(['resources/apresentation_template/js/app.js'])
-<script type="text/javascript" src="{{ asset('js/helper.js') }}" defer></script>
 
-@yield('js')
+@vite(['resources/presentation_template/js/app.js'])
+
+<!-- Scripts -->
+<script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/vendor/ladda/spin.min.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/vendor/ladda/ladda.min.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/js/app.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset($packaged_assets_prefix. '/js/helper.js') }}" defer></script>
 
 @if(!empty($assets['js']))
     @foreach ($assets['js'] as $js)
         <script type="text/javascript" src="{{ asset($js) }}" defer></script>
     @endforeach
 @endif
+
+@yield('js')
 </html>
