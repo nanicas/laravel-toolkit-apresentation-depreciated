@@ -1,10 +1,10 @@
 {
-    "name": "zevitagem/laravel-saas-template-core",
+    "name": "zevitagem/nans-laravel-toolkit-apresentation",
     "type": "library",
     "version": "1.0.0",
-    "description": "Abstraction of all common logic in creating a simple saas with laravel",
-    "keywords": ["saas", "laravel", "core"],
-    "homepage": "https://github.com/nanicas/nans-template-core-saas",
+    "description": "All code about apresentation in Laravel",
+    "keywords": ["views", "laravel", "core"],
+    "homepage": "https://github.com/nanicas/nans-laravel-toolkit-apresentation",
     "license": "MIT",
     "authors": [
         {
@@ -16,7 +16,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Zevitagem\\LaravelSaasTemplateCore\\": "app/"
+            "Zevitagem\\LaravelToolkitApresentation\\": "app/"
         }
     }
 }

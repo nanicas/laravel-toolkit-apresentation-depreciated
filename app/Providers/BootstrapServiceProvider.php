@@ -1,6 +1,6 @@
 <?php
 
-namespace Zevitagem\LaravelSaasTemplateCore\Providers;
+namespace Zevitagem\LaravelToolkitApresentation\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -26,10 +26,6 @@ class BootstrapServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
-        
-        Blade::component('package-dynamic-entity-component', DynamicEntityComponent::class);
-        
         $src = __DIR__ . '/../..';
         
         $this->publishes([
@@ -45,21 +41,13 @@ class BootstrapServiceProvider extends ServiceProvider
         ], 'template_core:resources');
         
         $this->publishes([
-            $src.'/resources/views' => resource_path('views/vendor/template'),
-        ], 'template_core:views');
+            $src.'/resources/views' => resource_path('views/vendor/toolkit_apresentation'),
+        ], 'toolkit_apresentation:views');
         
         $this->publishes([
-            $src . '/public' => public_path('template')
-        ], 'template_core:public');
+            $src . '/public' => public_path('toolkit_apresentation')
+        ], 'toolkit_apresentation:public');
         
-        $this->publishes([
-            $src.'/routes' => base_path('routes'),
-        ], 'template_core:routes');
-        
-        $this->publishes([
-            $src.'/config' => config_path(),
-        ], 'template_core:config');
-        
-        $this->loadViewsFrom(resource_path('views/vendor/template'), 'template_core');
+        $this->loadViewsFrom(resource_path('views/vendor/toolkit_apresentation'), 'toolkit_apresentation');
     }
 }

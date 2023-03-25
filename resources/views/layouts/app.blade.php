@@ -1,61 +1,106 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Favicons
-        <link rel="apple-touch-icon" href="/docs/4.6/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-        <link rel="icon" href="/docs/4.6/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-        <link rel="icon" href="/docs/4.6/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-        <link rel="manifest" href="/docs/4.6/assets/img/favicons/manifest.json">
-        <link rel="mask-icon" href="/docs/4.6/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
-        <link rel="icon" href="/docs/4.6/assets/img/favicons/favicon.ico">
-        <meta name="msapplication-config" content="/docs/4.6/assets/img/favicons/browserconfig.xml">
-        <meta name="theme-color" content="#563d7c">-->
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-        <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- Styles -->
+    <link href="{{ asset('vendor/ladda/ladda.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app_framework.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+    @yield('css')
 
-        <!-- Styles -->
-        <link href="{{ asset($packaged_assets_prefix . '/vendor/ladda/ladda.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/app_framework.css') }}" rel="stylesheet">
-        <link href="{{ asset($packaged_assets_prefix . '/css/app.css') }}" rel="stylesheet">
+    @if(!empty($assets['css']))
+        @foreach ($assets['css'] as $css)
+            <link rel="stylesheet" href="{{ asset($css) }}"></link>
+        @endforeach
+    @endif
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ route('site') }}">
+                    <span data-feather="terminal"></span> {{ config('app.name', 'Laravel') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        @yield('css')
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
 
-        @if(!empty($assets['css']))
-            @foreach ($assets['css'] as $css)
-                <link rel="stylesheet" href="{{ asset($css) }}"></link>
-            @endforeach
-        @endif
-    </head>
-    <body data-base-url="{{ \URL::to('/') }}" class="black-bg">
-        <div id="app">
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">Logar</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">Cadastrar</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        Sair
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="py-4">
             <div id="top-message"></div>
             @yield('content')
             <div id="bottom-message"></div>
-        </div>
-    </body>
+        </main>
+    </div>
+</body>
+<!-- Scripts -->
+<script type="text/javascript" src="{{ asset('js/app_framework.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset('vendor/ladda/spin.min.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset('vendor/ladda/ladda.min.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset('js/helper.js') }}" defer></script>
 
-    <!-- Scripts -->
-    <script type="text/javascript" src="{{ asset('js/app_framework.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/vendor/ladda/spin.min.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/vendor/ladda/ladda.min.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/js/app.js') }}" defer></script>
-    <script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/js/helper.js') }}" defer></script>
+@yield('js')
 
-    @yield('js')
-
-    @if(!empty($assets['js']))
-        @foreach ($assets['js'] as $js)
-            <script type="text/javascript" src="{{ asset($js) }}" defer></script>
-        @endforeach
-    @endif
+@if(!empty($assets['js']))
+    @foreach ($assets['js'] as $js)
+        <script type="text/javascript" src="{{ asset($js) }}" defer></script>
+    @endforeach
+@endif
 </html>

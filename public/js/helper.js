@@ -1,5 +1,20 @@
 var HELPER = (function () {
 
+    /**
+     * This function is same as PHP's nl2br() with default parameters.
+     *
+     * @param {string} str Input text
+     * @param {boolean} replaceMode Use replace instead of insert
+     * @param {boolean} isXhtml Use XHTML 
+     * @return {string} Filtered text
+     */
+    function nl2br(str, replaceMode, isXhtml) {
+
+        var breakTag = (isXhtml) ? '<br />' : '<br>';
+        var replaceStr = (replaceMode) ? '$1' + breakTag : '$1' + breakTag + '$2';
+        return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, replaceStr);
+    }
+
     function behaviorOnSubmit(e, form, callback) {
 
         if (e) {
@@ -23,6 +38,14 @@ var HELPER = (function () {
             processData: false,
             contentType: false,
             dataType: 'JSON',
+            error: function () {
+                callback({
+                    status: false,
+                    response: {
+                        message: APP.convertMessageToAlert('Ocorreu um erro no momento do processamento da solicitação, tente novamente!', 'danger')
+                    }
+                });
+            },
             complete: function () {
                 ladda.stop();
             },
@@ -34,5 +57,5 @@ var HELPER = (function () {
         });
     }
 
-    return {behaviorOnSubmit};
+    return {behaviorOnSubmit, nl2br};
 })();
