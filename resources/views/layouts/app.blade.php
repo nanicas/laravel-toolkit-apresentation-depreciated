@@ -16,7 +16,9 @@
     <!-- Styles -->
     <link href="{{ asset('vendor/ladda/ladda.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app_framework.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
+    <!-- Scripts -->
+    @vite(['resources/apresentation_template/sass/app.scss'])
     
     @yield('css')
 
@@ -30,7 +32,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('site') }}">
+                <a class="navbar-brand" href="#">
                     <span data-feather="terminal"></span> {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -93,7 +95,9 @@
 <script type="text/javascript" src="{{ asset('js/app_framework.js') }}" defer></script>
 <script type="text/javascript" src="{{ asset('vendor/ladda/spin.min.js') }}" defer></script>
 <script type="text/javascript" src="{{ asset('vendor/ladda/ladda.min.js') }}" defer></script>
-<script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>
+<!--<script type="text/javascript" src="{{ asset('js/app.js') }}" defer></script>-->
+<!-- Scripts -->
+@vite(['resources/apresentation_template/js/app.js'])
 <script type="text/javascript" src="{{ asset('js/helper.js') }}" defer></script>
 
 @yield('js')
