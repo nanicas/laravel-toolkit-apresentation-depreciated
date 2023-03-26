@@ -2,6 +2,10 @@
 #bottom-dashboard-message .alert > ul {
     margin-bottom: 0;
 }
+#top-message .alert > ul, 
+#bottom-message .alert > ul {
+    margin-bottom: 0;
+}
 #result-box .alert > ul {
     margin-bottom: 0;
 }

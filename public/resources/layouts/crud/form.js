@@ -7,7 +7,17 @@ var CRUD_FORM = (function () {
             return window.location.href = data.response.url_redir;
         }
 
-        state.formResultBox.html(data.response.message);
+        var hasPropertyWrapped = data.response.hasOwnProperty('wrapped');
+        
+        if (!hasPropertyWrapped || data.response.wrapped == true) {
+            DASHBOARD.setTopMessage(data.response.message);
+        } else {
+            DASHBOARD.setTopMessage(
+                APP.convertMessageToAlert(data.response.message, 'danger')
+            );
+        }
+        
+        //state.formResultBox.html(data.response.message);
     }
 
     function load() {
@@ -15,7 +25,7 @@ var CRUD_FORM = (function () {
         DASHBOARD.load();
 
         state.crudForm = $('#crud-form');
-        state.formResultBox = $('#form-result-box');
+        //state.formResultBox = $('#form-result-box');
         state.id = $('input[type="hidden"][name="id"]');
         state.isUpdate = (state.id.length > 0);
 

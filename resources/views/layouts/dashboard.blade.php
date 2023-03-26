@@ -33,16 +33,7 @@
     <div class="row">
         <div class="col-2" id="menu-box">
             <div id="accordion">
-                <div class="card">
-                    <div class="card-header direct-menu-item-header" id="headingZero">
-                        <h5 class="mb-0">
-                            <a class="rounded direct-menu-item list-group-item {{ ($screen == 'notification') ? 'active' : '' }}" href="#">
-                                <span data-feather="bell"></span>
-                                Notificações <label class="text-danger float-right"><span data-feather="alert-triangle"></label></span>
-                            </a>
-                        </h5>
-                    </div>
-                </div>
+                @yield('menu-items')
             </div>
         </div>
         <div class="col-10 px-md-4">
