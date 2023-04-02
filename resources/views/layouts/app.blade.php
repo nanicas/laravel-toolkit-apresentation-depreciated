@@ -35,7 +35,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <span data-feather="terminal"></span> {{ config('app.name', 'Laravel') }}
+                    <span data-feather="hexagon"></span> {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -87,9 +87,15 @@
         </nav>
 
         <main class="py-4">
-            <div id="top-message"></div>
+            <div class="container-fluid">
+                <div id="top-message"></div>
+            </div>
+            
             @yield('content')
-            <div id="bottom-message"></div>
+            
+            <div class="container-fluid">
+                <div id="bottom-message"></div>
+            </div>
         </main>
     </div>
 </body>

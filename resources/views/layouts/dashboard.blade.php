@@ -38,11 +38,14 @@
         </div>
         <div class="col-10 px-md-4">
             <main role="main">
-
+                
+                @yield('dashboard-main-top-content')
+                
+                <!--
                 <form method="GET" action="#">
                     <nav class="navbar flex-md-nowrap p-0">
 
-                        <!--            <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Company name</a>-->
+                        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Company name</a>
                         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -52,11 +55,11 @@
                                 <button type="submit" class="btn btn-primary">Buscar</button>
                             </li>
                         </ul>
-                        <!--<ul class="navbar-nav px-3">
+                        <ul class="navbar-nav px-3">
                             <li class="nav-item text-nowrap">
                                 <a class="nav-link" href="#">Sign out</a>
                             </li>
-                        </ul>-->
+                        </ul>
                     </nav>
                 </form>
 
@@ -67,10 +70,14 @@
                         <li class="breadcrumb-item active" aria-current="page"><a href="#">{{ \Request::route()->getName() }}</a></li>
                     </ol>
                 </nav>
+                -->
 
                 <div id="top-dashboard-message"></div>
                 @yield('dashboard-content')
                 <div id="bottom-dashboard-message"></div>
+                
+                @yield('dashboard-main-bottom-content')
+                
             </main>
         </div>
     </div>
