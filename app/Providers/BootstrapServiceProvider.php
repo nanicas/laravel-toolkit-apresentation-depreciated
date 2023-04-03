@@ -30,13 +30,7 @@ class BootstrapServiceProvider extends ServiceProvider
         
         $this->publishes([
             $src.'/resources/css' => resource_path('presentation_template/css'),
-        ], 'presentation_template:resources');
-        
-        $this->publishes([
             $src.'/resources/js' => resource_path('presentation_template/js'),
-        ], 'presentation_template:resources');
-        
-        $this->publishes([
             $src.'/resources/sass' => resource_path('presentation_template/sass'),
         ], 'presentation_template:resources');
         
@@ -47,6 +41,12 @@ class BootstrapServiceProvider extends ServiceProvider
         $this->publishes([
             $src . '/public' => public_path('presentation_template')
         ], 'presentation_template:public');
+        
+        $this->publishes([
+            $src . '/package.json' => base_path(),
+            $src . '/package-lock.json' => base_path(),
+            $src . '/vite.config.js' => base_path(),
+        ], 'presentation_template:root');
         
         $this->loadViewsFrom(resource_path('views/vendor/presentation_template'), 'presentation_template');
     }
