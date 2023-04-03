@@ -43,9 +43,9 @@ class BootstrapServiceProvider extends ServiceProvider
         ], 'presentation_template:public');
         
         $this->publishes([
-            $src . '/package.json' => base_path(),
-            $src . '/package-lock.json' => base_path(),
-            $src . '/vite.config.js' => base_path(),
+            $src . '/package.json' => base_path('package.json'),
+            $src . '/package-lock.json' => base_path('package-lock.json'),
+            $src . '/vite.config.js' => base_path('vite.config.js'),
         ], 'presentation_template:root');
         
         $this->loadViewsFrom(resource_path('views/vendor/presentation_template'), 'presentation_template');
