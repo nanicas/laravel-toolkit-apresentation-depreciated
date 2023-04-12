@@ -9,3 +9,7 @@
     display: flex;
     align-items: center;
 }
+#top-message .alert > ul, 
+#bottom-message .alert > ul {
+    margin-bottom: 0;
+}

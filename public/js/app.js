@@ -1,12 +1,10 @@
 var APP = (function () {
 
-    var state;
+    var state = {};
 
     function load() {
-        state = {
-            body: $('body'),
-            topMessage: $('#top-message')
-        }
+        state.body = $('body');
+        state.topMessage = $('#top-message');
     }
 
     function replaceIcons() {
@@ -39,5 +37,5 @@ var APP = (function () {
         return alertMessage.prop("outerHTML");
     }
 
-    return {load, getBaseUrl, setTopMessage, replaceIcons, convertMessageToAlert};
+    return {state, load, getBaseUrl, setTopMessage, replaceIcons, convertMessageToAlert};
 })();
