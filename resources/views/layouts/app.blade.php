@@ -17,10 +17,11 @@
     <link href="{{ asset($packaged_assets_prefix . '/vendor/ladda/ladda.min.css') }}" rel="stylesheet">
     <!--
     <link href="{{ asset('css/app_framework.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     -->
     <!-- Scripts -->
     @vite(['resources/presentation_template/sass/app.scss'])
+    
+    <link href="{{ asset($packaged_assets_prefix . '/css/app.css') }}" rel="stylesheet">
 
     @if(!empty($assets['css']))
         @foreach ($assets['css'] as $css)
