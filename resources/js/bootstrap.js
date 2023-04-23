@@ -12,6 +12,9 @@ window.axios = axios;
 import $ from 'jquery';
 window.$ = $;
 
+import Chart from 'chart.js/auto';
+window.Chart = Chart;
+
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
 
