@@ -17,6 +17,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@kurkle/color": "^0.3.2",
         "chart.js": "^4.2.1"
     }
 }

@@ -15,6 +15,9 @@ window.$ = $;
 import Chart from 'chart.js/auto';
 window.Chart = Chart;
 
+import colorLib from '@kurkle/color';
+window.colorLib = colorLib;
+
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
 
