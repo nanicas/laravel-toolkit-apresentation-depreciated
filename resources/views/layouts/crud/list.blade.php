@@ -5,20 +5,33 @@
         @include($view_prefix . 'layouts.crud.messages-state', ['state' => $state])
     @endif
     
-    @if(!isset($config['create_option']) || $config['create_option'] === true)
-        @yield('create_link', \View::make('layouts.crud.create_link', compact('screen')))
-    @endif
+    <div id="crud-message">
+        @if(!empty($message))
+            {!! $message !!}
+        @endif
+    </div>
     
-    @php $hasRows = ($rows && $rows->count() > 0); @endphp
+    @if($status)
+        @if(!isset($config['create_option']) || $config['create_option'] === true)
+            @yield('create_link', \View::make('layouts.crud.create_link', compact('screen')))
+        @endif
 
-    @if(!$hasRows)
-        <div class="alert alert-danger">Nenhum registro cadastrado</div>
-    @endif
+        @php $hasRows = (isset($data['rows']) && $data['rows']->count() > 0); @endphp
 
-    @if($hasRows)
-        <div id="crud-list">
-            @yield('crud-content')
-        </div>
+        @if(!$hasRows)
+            <div class="alert alert-warning">Nenhum registro cadastrado</div>
+        @endif
+
+        @if($hasRows)
+            <div id="crud-list">
+                @yield('crud-content')
+                
+                <br>
+                <nav class="pagination float-end">
+                    {{ $data['rows']->appends($query_params)->links() }}
+                </nav>
+            </div>
+        @endif
     @endif
 
 @endsection
