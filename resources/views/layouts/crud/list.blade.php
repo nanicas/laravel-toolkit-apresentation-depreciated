@@ -21,6 +21,8 @@
         @if(!$hasRows)
             <div class="alert alert-warning">Nenhum registro cadastrado</div>
         @endif
+        
+        @yield('crud-filters')
 
         @if($hasRows)
             <div id="crud-list">

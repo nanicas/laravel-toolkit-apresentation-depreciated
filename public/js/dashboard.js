@@ -60,7 +60,7 @@ var DASHBOARD = (function () {
         state.fastTitleModal = $('.modal-title', state.fastModal);
         state.fastBodyModal = $('.modal-body', state.fastModal);
         state.fastResultBox = $('#fast-result-box', state.fastModal);
-        state.menu = $('#sidebarMenu');
+        state.menu = $('#menu-box ul');
         state.topMessageElement = $('#top-dashboard-message');
         state.bottomMessageElement = $('#bottom-dashboard-message');
         state.changeScopeForm = $('form#change-scope');
@@ -83,6 +83,18 @@ var DASHBOARD = (function () {
         pureFastModal.addEventListener('show.bs.modal', function (event) {
             state.fastResultBox.html('');
         });
+        
+        window.addEventListener('resize', event => {
+            console.log(window.innerWidth)
+            if (window.innerWidth <= 768) {
+                state.menu.addClass('list-group-horizontal');
+            } else {
+                state.menu.removeClass('list-group-horizontal');
+            }
+        });
+        
+        let resizeEvent = new Event('resize');
+        window.dispatchEvent(resizeEvent);
     }
     
     function setTopMessage(message, type) {

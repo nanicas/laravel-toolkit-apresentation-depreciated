@@ -1,42 +1,15 @@
 @extends('layouts.app')
 
-@section('css')
-<style>
-    #menu-box .feather {
-        width: 16px;
-        height: 16px;
-        vertical-align: text-bottom;
-    }
-    #menu-box .direct-menu-item {
-        font-size: 15px;
-    }
-    #menu-box .card-body {
-        padding: 5px;
-    }
-    .direct-menu-item-header {
-        padding: 5px;
-    }
-    #menu-box .feather {
-        vertical-align: middle;
-    }
-    #menu-box .btn-link {
-        padding-top: 0px;
-        padding-bottom: 0px;
-        padding-left: 5px;
-    }
-</style>
-@endsection
-
 @section('content')
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-2" id="menu-box">
+        <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2" id="menu-box">
             <div id="accordion">
                 @yield('menu-items')
             </div>
         </div>
-        <div class="col-10 px-md-4">
+        <div class="col-sm-12 col-md-9 col-lg-9 col-xl-10 px-md-4">
             <main role="main">
                 
                 @yield('dashboard-main-top-content')
