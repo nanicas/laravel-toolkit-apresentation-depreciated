@@ -1,7 +1,8 @@
 var DASHBOARD = (function () {
 
     var state = {};
-    
+    var callbacks = {};
+
     function saveModal(form, e, callback) {
 
         HELPER.behaviorOnSubmit(e, form, function (data) {
@@ -21,7 +22,7 @@ var DASHBOARD = (function () {
             }
         });
     }
-    
+
     function hideModal() {
         state.fastModalBootstrap.hide();
     }
@@ -51,10 +52,10 @@ var DASHBOARD = (function () {
     }
 
     function load() {
-        
+
         APP.load();
         APP.replaceIcons();
-        
+
         state.fastModal = $('#fast-modal');
         state.fastModalBootstrap = new bootstrap.Modal(state.fastModal.get(0));
         state.fastTitleModal = $('.modal-title', state.fastModal);
@@ -64,47 +65,50 @@ var DASHBOARD = (function () {
         state.topMessageElement = $('#top-dashboard-message');
         state.bottomMessageElement = $('#bottom-dashboard-message');
         state.changeScopeForm = $('form#change-scope');
-        
-         state.changeScopeForm.submit(function (e) {
+
+        state.changeScopeForm.submit(function (e) {
             HELPER.behaviorOnSubmit(e, $(this), function (data) {
                 APP.setTopMessage(data.response.message);
-                
+
                 if (data.status == true) {
                     window.location.reload();
                 }
             });
         });
-        
+
 //        state.fastModal.on('show.bs.modal', function () {
 //            alert('hixx');
 //        })
-          
+
         var pureFastModal = document.getElementById('fast-modal');
         pureFastModal.addEventListener('show.bs.modal', function (event) {
             state.fastResultBox.html('');
         });
-        
+
         window.addEventListener('resize', event => {
-            console.log(window.innerWidth)
             if (window.innerWidth <= 768) {
                 state.menu.addClass('list-group-horizontal');
             } else {
                 state.menu.removeClass('list-group-horizontal');
             }
+
+            if (typeof DASHBOARD.callbacks.resize == 'function') {
+                DASHBOARD.callbacks.resize(window.innerWidth);
+            }
         });
-        
+
         let resizeEvent = new Event('resize');
         window.dispatchEvent(resizeEvent);
     }
-    
+
     function setTopMessage(message, type) {
         state.topMessageElement.removeClass('none');
         state.topMessageElement.html(message);
     }
-    
-   
 
-    return { state, load, setTopMessage, loadModal, hideModal, saveModal };
+
+
+    return {state, load, setTopMessage, loadModal, hideModal, saveModal, callbacks};
 })();
 
 //DASHBOARD = DASHBOARD();
