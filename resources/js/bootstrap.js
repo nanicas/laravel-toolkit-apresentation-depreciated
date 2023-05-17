@@ -12,6 +12,8 @@ window.axios = axios;
 import $ from 'jquery';
 window.$ = $;
 
+import 'jquery-mask-plugin';
+
 import Chart from 'chart.js/auto';
 window.Chart = Chart;
 

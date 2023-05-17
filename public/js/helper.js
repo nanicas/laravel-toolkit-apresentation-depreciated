@@ -8,6 +8,20 @@ var HELPER = (function () {
      * @param {boolean} isXhtml Use XHTML 
      * @return {string} Filtered text
      */
+
+    function getConfigSPPhoneMask() {
+        var SPMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        };
+        var spOptions = {
+            onKeyPress: function (val, e, field, options) {
+                field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        };
+
+        return {SPMaskBehavior, spOptions};
+    }
+
     function nl2br(str, replaceMode, isXhtml) {
 
         var breakTag = (isXhtml) ? '<br />' : '<br>';
@@ -57,5 +71,5 @@ var HELPER = (function () {
         });
     }
 
-    return {behaviorOnSubmit, nl2br};
+    return {behaviorOnSubmit, nl2br, getConfigSPPhoneMask};
 })();
