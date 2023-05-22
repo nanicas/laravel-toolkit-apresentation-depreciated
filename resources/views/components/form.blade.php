@@ -9,6 +9,8 @@
 @if(!isset($status) || $status === true)
 
     <div id="form-result-box"></div>
+    
+    @yield('before-crud-form-content')
 
     @if(isset($data['row']) && !empty($data['row']))
         @php $id = $data['row']->getId(); @endphp
@@ -33,4 +35,6 @@
             </div>
         </div>
     </form>
+    
+    @yield('after-crud-form-content')
 @endif

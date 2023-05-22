@@ -29,6 +29,25 @@ var HELPER = (function () {
         return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, replaceStr);
     }
 
+    function extractDatetimeString(date) {
+        dateObject = new Date(date);
+
+        var year = dateObject.getFullYear().toString(),
+                month = dateObject.getMonth().toString(),
+                day = dateObject.getDate().toString();
+
+        if (month.length == 1) {
+            month = '0' + month;
+        }
+        if (day.length == 1) {
+            day = '0' + day;
+        }
+
+        dateAsString = year + '-' + month + '-' + day;
+        
+        return {dateObject, dateAsString};
+    }
+
     function behaviorOnSubmit(e, form, callback) {
 
         if (e) {
@@ -71,5 +90,5 @@ var HELPER = (function () {
         });
     }
 
-    return {behaviorOnSubmit, nl2br, getConfigSPPhoneMask};
+    return {behaviorOnSubmit, nl2br, getConfigSPPhoneMask, extractDatetimeString};
 })();
