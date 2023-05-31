@@ -11,6 +11,7 @@ window.axios = axios;
 
 import $ from 'jquery';
 window.$ = $;
+window.jQuery = $;
 
 import 'jquery-mask-plugin';
 
