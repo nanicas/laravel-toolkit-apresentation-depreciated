@@ -21,7 +21,7 @@
     <!-- Scripts -->
     @vite(['resources/presentation_template/sass/app.scss'])
     
-    <link href="{{ asset($packaged_assets_prefix . '/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset($packaged_assets_prefix . '/css/layouts/app.css') }}" rel="stylesheet">
 
     @if(!empty($assets['css']))
         @foreach ($assets['css'] as $css)
@@ -104,8 +104,8 @@
 <!-- Scripts -->
 <script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/vendor/ladda/spin.min.js') }}" defer></script>
 <script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/vendor/ladda/ladda.min.js') }}" defer></script>
-<script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/js/app.js') }}" defer></script>
-<script type="text/javascript" src="{{ asset($packaged_assets_prefix. '/js/helper.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/js/layouts/app.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset($packaged_assets_prefix. '/js/utils/helper.js') }}" defer></script>
 
 @if(!empty($assets['js']))
     @foreach ($assets['js'] as $js)

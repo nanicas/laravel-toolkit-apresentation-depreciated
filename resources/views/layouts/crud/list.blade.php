@@ -16,19 +16,11 @@
             @yield('create_link', \View::make('layouts.crud.create_link', compact('screen')))
         @endif
 
-        @php $hasRows = (isset($data['rows']) && $data['rows']->count() > 0); @endphp
-
-        @if(!$hasRows)
-            <div class="alert alert-warning">Nenhum registro cadastrado</div>
-        @endif
-        
         @yield('crud-filters')
 
-        @if($hasRows)
-            <div id="crud-list">
-                @yield('crud-content')
-            </div>
-        @endif
+        <div id="crud-list">
+            @yield('crud-content')
+        </div>
     @endif
 
 @endsection
