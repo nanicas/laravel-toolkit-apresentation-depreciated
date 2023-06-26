@@ -24,6 +24,10 @@ window.colorLib = colorLib;
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
 
+import DataTable from 'datatables.net-bs5';
+import languagePT from 'datatables.net-plugins/i18n/pt-BR.mjs';
+window.languagePT = languagePT
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**

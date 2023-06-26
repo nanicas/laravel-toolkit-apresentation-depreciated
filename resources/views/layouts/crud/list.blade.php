@@ -27,11 +27,6 @@
         @if($hasRows)
             <div id="crud-list">
                 @yield('crud-content')
-                
-                <br>
-                <nav class="pagination float-end">
-                    {{ $data['rows']->appends($query_params)->links() }}
-                </nav>
             </div>
         @endif
     @endif

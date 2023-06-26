@@ -8,12 +8,12 @@ var LIST_CRUD = (function () {
 
         state.deleteForm = $('.delete-form');
         state.crudListBox = $('#crud-list');
-        state.table = $('table', state.crudListBox);
+        state.table = $('table.dataTable', state.crudListBox);
 
         state.deleteForm.submit(function (e) {
             HELPER.behaviorOnSubmit(e, $(this), function (data) {
                 DASHBOARD.setTopMessage(data.response.message);
-                
+
                 if (!data.status) {
                     return;
                 }
@@ -28,5 +28,21 @@ var LIST_CRUD = (function () {
         });
     }
 
-    return {load};
+    function initTable(columns) {
+
+        state.datatable = state.table.DataTable({
+            processing: true,
+            paging: true,
+            serverSide: true,
+            searchDelay: 1500,
+            ajax: state.table.data('route'),
+            language: languagePT,
+            columns: columns,
+            drawCallback: function( settings ) {
+                APP.replaceIcons();
+            }
+        });
+    }
+
+    return {load, initTable};
 })();
