@@ -6,11 +6,13 @@ var LIST_CRUD = (function () {
 
         DASHBOARD.load();
 
-        state.deleteForm = $('.delete-form');
+        state.datatable = null;
         state.crudListBox = $('#crud-list');
         state.table = $('table', state.crudListBox);
 
-        state.deleteForm.submit(function (e) {
+        state.table.on('submit', '.delete-form', function (e) {
+            var tr = $(this).parents('tr');
+
             HELPER.behaviorOnSubmit(e, $(this), function (data) {
                 DASHBOARD.setTopMessage(data.response.message);
 
@@ -18,12 +20,14 @@ var LIST_CRUD = (function () {
                     return;
                 }
 
-                state.table.find('tr[data-id="' + data.response.id + '"]').remove();
-
-                var remaingRows = state.table.find('tbody > tr');
-                if (remaingRows.length == 0) {
-                    window.location.reload();
+                if (!state.datatable) {
+                    return;
                 }
+
+                state.datatable
+                        .row(tr)
+                        .remove()
+                        .draw();
             });
         });
     }
