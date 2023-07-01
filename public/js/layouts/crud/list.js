@@ -34,8 +34,11 @@ var LIST_CRUD = (function () {
 
     function initTable(config) {
 
-        if (typeof (config.table) == undefined) {
+        if (typeof (config.table) == 'undefined') {
             config.table = state.table;
+        }
+        if (typeof (config.ajax) == 'undefined') {
+            config.ajax = state.table.data('route');
         }
 
         $.fn.dataTable.ext.errMode = 'none';
@@ -45,7 +48,7 @@ var LIST_CRUD = (function () {
             paging: true,
             serverSide: true,
             searchDelay: 1500,
-            ajax: state.table.data('route'),
+            ajax: config.ajax,
             language: languagePT,
             columns: config.columns,
             drawCallback: function (settings) {
@@ -63,5 +66,5 @@ var LIST_CRUD = (function () {
         });
     }
 
-    return {load, initTable};
+    return {load, initTable, state};
 })();

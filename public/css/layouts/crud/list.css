@@ -1,4 +1,4 @@
-#crud-list tbody tr td:last-child {
+#crud-list tbody tr td:last-child:has(> .btn) { 
     display: flex;
     justify-content: space-around;
 }
