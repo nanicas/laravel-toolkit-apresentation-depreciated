@@ -32,6 +32,7 @@ class BootstrapServiceProvider extends ServiceProvider
             $src.'/resources/css' => resource_path('presentation_template/css'),
             $src.'/resources/js' => resource_path('presentation_template/js'),
             $src.'/resources/sass' => resource_path('presentation_template/sass'),
+            $src.'/resources/vendor' => resource_path('presentation_template/vendor'),
         ], 'presentation_template:resources');
         
         $this->publishes([
