@@ -13,14 +13,9 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Styles 
-    <link href="{{ asset($packaged_assets_prefix . '/vendor/ladda/ladda.min.css') }}" rel="stylesheet">-->
-    <!--
-    <link href="{{ asset('css/app_framework.css') }}" rel="stylesheet">
-    -->
-    <!-- Scripts -->
     @vite(['resources/presentation_template/sass/app.scss'])
     
+    <link href="{{ asset('build/vendor/select2/custom.css') }}" rel="stylesheet">
     <link href="{{ asset($packaged_assets_prefix . '/css/layouts/app.css') }}" rel="stylesheet">
 
     @if(!empty($assets['css']))

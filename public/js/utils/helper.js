@@ -8,6 +8,12 @@ var HELPER = (function () {
      * @param {boolean} isXhtml Use XHTML 
      * @return {string} Filtered text
      */
+    
+    function initSelect2(element) {
+        element.select2({
+            language: 'pt-BR'
+        });
+    }
 
     function getConfigSPPhoneMask() {
         var SPMaskBehavior = function (val) {
@@ -90,5 +96,11 @@ var HELPER = (function () {
         });
     }
 
-    return {behaviorOnSubmit, nl2br, getConfigSPPhoneMask, extractDatetimeString};
+    return {
+        behaviorOnSubmit,
+        nl2br,
+        getConfigSPPhoneMask,
+        extractDatetimeString,
+        initSelect2
+    };
 })();

@@ -22,6 +22,10 @@ export default defineConfig({
                     dest: 'vendor/select2/i18n'
                 },
                 {
+                    src: 'resources/presentation_template/vendor/select2/custom.css',
+                    dest: 'vendor/select2'
+                },
+                {
                     src: 'resources/presentation_template/vendor/bootstrap-theme/feather.min.js',
                     dest: 'vendor/bootstrap-theme'
                 },
