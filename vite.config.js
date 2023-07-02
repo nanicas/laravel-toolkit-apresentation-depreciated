@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
     plugins: [
@@ -10,5 +11,21 @@ export default defineConfig({
             ],
             refresh: true,
         }),
+        viteStaticCopy({
+            targets: [
+                {
+                    src: 'resources/presentation_template/vendor/chartjs/utils.js',
+                    dest: 'vendor/chartjs'
+                },
+                {
+                    src: 'resources/presentation_template/vendor/select2/i18n/pt-BR.js',
+                    dest: 'vendor/select2/i18n'
+                },
+                {
+                    src: 'resources/presentation_template/vendor/bootstrap-theme/feather.min.js',
+                    dest: 'vendor/bootstrap-theme'
+                },
+            ]
+        })
     ],
 });
