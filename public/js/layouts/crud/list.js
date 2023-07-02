@@ -49,7 +49,7 @@ var LIST_CRUD = (function () {
             serverSide: true,
             searchDelay: 1500,
             ajax: config.ajax,
-            language: languagePT,
+            language: languagePTDatatable,
             columns: config.columns,
             drawCallback: function (settings) {
                 APP.replaceIcons();

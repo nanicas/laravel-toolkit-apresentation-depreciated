@@ -58,5 +58,9 @@
 @endsection
 
 @section('js')
-<script src="{{ asset($packaged_assets_prefix . '/vendor/bootstrap-theme/feather.min.js') }}"></script>
+<!-- 
+Feather will be referenced until the migration to 
+bootstrap-icons is done and the resources folder starts to be used.
+-->
+<script src="{{ asset('build/vendor/bootstrap-theme/feather.min.js') }}"></script>
 @endsection

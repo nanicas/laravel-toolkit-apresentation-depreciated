@@ -13,8 +13,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Styles -->
-    <link href="{{ asset($packaged_assets_prefix . '/vendor/ladda/ladda.min.css') }}" rel="stylesheet">
+    <!-- Styles 
+    <link href="{{ asset($packaged_assets_prefix . '/vendor/ladda/ladda.min.css') }}" rel="stylesheet">-->
     <!--
     <link href="{{ asset('css/app_framework.css') }}" rel="stylesheet">
     -->
@@ -99,11 +99,12 @@
     </div>
 </body>
 
-@vite(['resources/presentation_template/js/app.js'])
+@vite([
+    'resources/presentation_template/js/app.js',
+])
 
 <!-- Scripts -->
-<script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/vendor/ladda/spin.min.js') }}" defer></script>
-<script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/vendor/ladda/ladda.min.js') }}" defer></script>
+<script type="text/javascript" src="{{ asset('build/vendor/select2/i18n/pt-BR.js') }}" defer></script>
 <script type="text/javascript" src="{{ asset($packaged_assets_prefix . '/js/layouts/app.js') }}" defer></script>
 <script type="text/javascript" src="{{ asset($packaged_assets_prefix. '/js/utils/helper.js') }}" defer></script>
 
