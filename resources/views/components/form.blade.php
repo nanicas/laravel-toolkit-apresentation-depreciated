@@ -24,16 +24,18 @@
 
         @yield('crud-form-content')
 
-        <hr>
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <button type="submit" data-style="expand-right" class="btn btn-success ladda-button">
-                        <span class="ladda-label">Salvar cadastro</span>
-                    </button>
+        @if(!isset($config['save_option']) || $config['save_option'] === true)
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <button type="submit" data-style="expand-right" class="btn btn-success ladda-button">
+                            <span class="ladda-label">Salvar cadastro</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
     </form>
     
     @yield('after-crud-form-content')

@@ -35,6 +35,9 @@ window.bootstrap = bootstrap;
 import select2 from 'select2';
 select2(window, $);
 
+import { jsPDF } from "jspdf";
+window.jsPDF = jsPDF;
+
 /**
  * Imported via vite due to not being able to make it work using require
  * directly from here:

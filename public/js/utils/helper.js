@@ -1,14 +1,9 @@
 var HELPER = (function () {
 
-    /**
-     * This function is same as PHP's nl2br() with default parameters.
-     *
-     * @param {string} str Input text
-     * @param {boolean} replaceMode Use replace instead of insert
-     * @param {boolean} isXhtml Use XHTML 
-     * @return {string} Filtered text
-     */
-    
+    function scrollMaximumOnTop() {
+        window.scrollTo(0, 0);
+    }
+
     function initSelect2(element) {
         element.select2({
             language: 'pt-BR'
@@ -28,6 +23,14 @@ var HELPER = (function () {
         return {SPMaskBehavior, spOptions};
     }
 
+    /**
+     * This function is same as PHP's nl2br() with default parameters.
+     *
+     * @param {string} str Input text
+     * @param {boolean} replaceMode Use replace instead of insert
+     * @param {boolean} isXhtml Use XHTML 
+     * @return {string} Filtered text
+     */
     function nl2br(str, replaceMode, isXhtml) {
 
         var breakTag = (isXhtml) ? '<br />' : '<br>';
@@ -50,7 +53,7 @@ var HELPER = (function () {
         }
 
         dateAsString = year + '-' + month + '-' + day;
-        
+
         return {dateObject, dateAsString};
     }
 
@@ -101,6 +104,7 @@ var HELPER = (function () {
         nl2br,
         getConfigSPPhoneMask,
         extractDatetimeString,
-        initSelect2
+        initSelect2,
+        scrollMaximumOnTop
     };
 })();
