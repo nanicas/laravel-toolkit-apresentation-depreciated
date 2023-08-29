@@ -106,9 +106,21 @@ var DASHBOARD = (function () {
         state.topMessageElement.html(message);
     }
 
+    function setBottomMessage(message) {
+        state.bottomMessageElement.removeClass('none');
+        state.bottomMessageElement.html(message);
+    }
 
-
-    return {state, load, setTopMessage, loadModal, hideModal, saveModal, callbacks};
+    return {
+        state,
+        load,
+        setTopMessage,
+        setBottomMessage,
+        loadModal,
+        hideModal,
+        saveModal,
+        callbacks,
+    };
 })();
 
 //DASHBOARD = DASHBOARD();

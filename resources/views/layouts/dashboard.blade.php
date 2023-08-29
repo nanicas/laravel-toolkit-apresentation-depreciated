@@ -46,6 +46,19 @@
                 -->
 
                 <div id="top-dashboard-message"></div>
+
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        @yield('dashboard-breadcrumb')
+                        <!-- 
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        -->
+                    </ol>
+                </nav>
+
+                <h2 class="text-start">@yield('dashboard-title')</h2>
+                
                 @yield('dashboard-content')
                 <div id="bottom-dashboard-message"></div>
                 

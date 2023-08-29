@@ -44,6 +44,7 @@ var LIST_CRUD = (function () {
         $.fn.dataTable.ext.errMode = 'none';
 
         state.datatable = state.table.DataTable({
+            order: [[0, 'desc']],
             processing: true,
             paging: true,
             serverSide: true,
