@@ -3,16 +3,24 @@ var DASHBOARD = (function () {
     var state = {};
     var callbacks = {};
 
-    function saveModal(form, e, callback) {
+    function saveModal(form, e, callback, hideModalOnTrue) {
 
         HELPER.behaviorOnSubmit(e, form, function (data) {
 
+            var resultBox = state.fastResultBox
+                hasResultBox = (resultBox.length > 0);
+
             if (data.status == true) {
-                DASHBOARD.hideModal();
-                DASHBOARD.setTopMessage(data.response.message);
+                if (hideModalOnTrue === true || typeof(hideModalOnTrue) == 'undefined') {
+                    DASHBOARD.hideModal();
+                    DASHBOARD.setTopMessage(data.response.message);
+                } else {
+                    if (hasResultBox) {
+                        resultBox.html(data.response.message);
+                    }
+                }
             } else {
-                var resultBox = state.fastResultBox;
-                if (resultBox.length > 0) {
+                if (hasResultBox) {
                     resultBox.html(data.response.message);
                 }
             }
@@ -26,10 +34,27 @@ var DASHBOARD = (function () {
     function hideModal() {
         state.fastModalBootstrap.hide();
     }
+    
+    function showModal() {
+        state.fastModalBootstrap.show();
+    }
+    
+    function removeSaveButtonInModal() {
+        state.fastFooterModal.find('.save').remove();
+    }
+    
+    function fillModal(content) {
+        state.fastBodyModal.html(content);
+    }
+    
+    function addStaticBackdropOnModal() {
+        state.fastModalBootstrap._config.backdrop = 'static';
+        state.fastModalBootstrap._config.keyboard = false;
+    }
 
     function loadModal(url, callback) {
         state.fastBodyModal.html('Aguarde um momento, por gentileza ...');
-        state.fastModalBootstrap.show();
+        showModal();
 
         $.ajax({
             url: url,
@@ -41,9 +66,9 @@ var DASHBOARD = (function () {
             },
             success: function (data) {
                 if (!data.status) {
-                    state.fastBodyModal.html(data.response.message);
+                    fillModal(data.response.message);
                 } else {
-                    state.fastBodyModal.html(data.response.html);
+                    fillModal(data.response.html);
                 }
 
                 callback(data.status, data.response);
@@ -60,6 +85,7 @@ var DASHBOARD = (function () {
         state.fastModalBootstrap = new bootstrap.Modal(state.fastModal.get(0));
         state.fastTitleModal = $('.modal-title', state.fastModal);
         state.fastBodyModal = $('.modal-body', state.fastModal);
+        state.fastFooterModal = $('.modal-footer', state.fastModal);
         state.fastResultBox = $('#fast-result-box', state.fastModal);
         state.menu = $('#menu-box ul');
         state.topMessageElement = $('#top-dashboard-message');
@@ -119,7 +145,11 @@ var DASHBOARD = (function () {
         loadModal,
         hideModal,
         saveModal,
+        showModal,
+        fillModal,
         callbacks,
+        addStaticBackdropOnModal,
+        removeSaveButtonInModal,
     };
 })();
 
