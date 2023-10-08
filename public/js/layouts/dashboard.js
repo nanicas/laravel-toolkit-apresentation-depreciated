@@ -3,15 +3,37 @@ var DASHBOARD = (function () {
     var state = {};
     var callbacks = {};
 
+    function behaviorOnSubmitNoForm(clicked, data, callback, personalizedConfig) {
+        
+        if (typeof (personalizedConfig) == 'undefined') {
+            personalizedConfig = {}
+        }
+        
+        var config = {...{
+            isModal: true
+        }, personalizedConfig};
+        
+        HELPER.behaviorOnSubmitNoForm(clicked, data, function(serverResponse) {
+            
+            if (!serverResponse.status) {
+                if (config.isModal) {
+                    state.fastResultBox.html(serverResponse.response.message);
+                }
+            }
+            
+            callback(serverResponse);
+        });
+    }
+
     function saveModal(form, e, callback, hideModalOnTrue) {
 
         HELPER.behaviorOnSubmit(e, form, function (data) {
 
             var resultBox = state.fastResultBox
-                hasResultBox = (resultBox.length > 0);
+            hasResultBox = (resultBox.length > 0);
 
             if (data.status == true) {
-                if (hideModalOnTrue === true || typeof(hideModalOnTrue) == 'undefined') {
+                if (hideModalOnTrue === true || typeof (hideModalOnTrue) == 'undefined') {
                     DASHBOARD.hideModal();
                     DASHBOARD.setTopMessage(data.response.message);
                 } else {
@@ -34,19 +56,19 @@ var DASHBOARD = (function () {
     function hideModal() {
         state.fastModalBootstrap.hide();
     }
-    
+
     function showModal() {
         state.fastModalBootstrap.show();
     }
-    
+
     function removeSaveButtonInModal() {
         state.fastFooterModal.find('.save').remove();
     }
-    
+
     function fillModal(content) {
         state.fastBodyModal.html(content);
     }
-    
+
     function addStaticBackdropOnModal() {
         state.fastModalBootstrap._config.backdrop = 'static';
         state.fastModalBootstrap._config.keyboard = false;
@@ -150,6 +172,7 @@ var DASHBOARD = (function () {
         callbacks,
         addStaticBackdropOnModal,
         removeSaveButtonInModal,
+        behaviorOnSubmitNoForm,
     };
 })();
 

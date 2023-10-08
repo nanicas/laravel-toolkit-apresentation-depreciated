@@ -56,6 +56,42 @@ var HELPER = (function () {
 
         return {dateObject, dateAsString};
     }
+    
+    function behaviorOnSubmitNoForm(clicked, data, callback) {
+        if (typeof (data) == 'undefined') {
+            data = {}
+        }
+
+        var ladda = Ladda.create(clicked.get(0));
+            ladda.start();
+
+        var url = clicked.data('route'),
+                method = clicked.data('method');
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: url,
+            type: method,
+            data: data,
+            dataType: 'JSON',
+            error: function () {
+                callback({
+                    status: false,
+                    response: {
+                        message: APP.convertMessageToAlert('Ocorreu um erro no momento do processamento da solicitação, tente novamente!', 'danger')
+                    }
+                });
+            },
+            complete: function () {
+                ladda.stop();
+            },
+            success: function (data) {
+                callback(data);
+            }
+        });
+    }
 
     function behaviorOnSubmit(e, form, callback) {
 
@@ -92,15 +128,14 @@ var HELPER = (function () {
                 ladda.stop();
             },
             success: function (data) {
-                if (typeof (callback) == 'function') {
-                    return callback(data);
-                }
+                callback(data);
             }
         });
     }
 
     return {
         behaviorOnSubmit,
+        behaviorOnSubmitNoForm,
         nl2br,
         getConfigSPPhoneMask,
         extractDatetimeString,
