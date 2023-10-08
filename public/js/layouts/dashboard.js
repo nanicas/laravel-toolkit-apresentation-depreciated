@@ -14,11 +14,8 @@ var DASHBOARD = (function () {
         }, personalizedConfig};
         
         HELPER.behaviorOnSubmitNoForm(clicked, data, function(serverResponse) {
-            
-            if (!serverResponse.status) {
-                if (config.isModal) {
-                    state.fastResultBox.html(serverResponse.response.message);
-                }
+            if (config.isModal) {
+                state.fastResultBox.html(serverResponse.response.message);
             }
             
             callback(serverResponse);
