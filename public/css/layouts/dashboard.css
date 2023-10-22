@@ -3,6 +3,11 @@
 #bottom-dashboard-message .alert > ul {
     margin-bottom: 0;
 }
+#fast-result-box > .alert {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
 #menu-box .feather {
     width: 16px;
     height: 16px;
