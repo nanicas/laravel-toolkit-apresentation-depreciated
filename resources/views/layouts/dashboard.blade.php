@@ -45,6 +45,24 @@
                 </nav>
                 -->
 
+                @if(!empty($flash_data))
+                    @if(is_array($flash_data) && !empty($flash_data['message']))
+                        <div class="flash-message">
+                            @if(array_key_exists('status', $flash_data))
+                                @if($flash_data['status'] === true)
+                                    @include('components.messages.success', ['message' => $flash_data['message']])
+                                @else
+                                    @include('components.messages.danger', ['message' => $flash_data['message']])
+                                @endif
+                            @else
+                                <div class="alert alert-primary">
+                                    {{ $flash_data['message'] }}
+                                </div>
+                            @endif
+                        </div>
+                    @endif
+                @endif
+
                 <div id="top-dashboard-message"></div>
 
                 <nav aria-label="breadcrumb">
@@ -60,6 +78,7 @@
                 <h2 class="text-start">@yield('dashboard-title')</h2>
                 
                 @yield('dashboard-content')
+                
                 <div id="bottom-dashboard-message"></div>
                 
                 @yield('dashboard-main-bottom-content')
