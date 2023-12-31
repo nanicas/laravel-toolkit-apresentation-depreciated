@@ -82,6 +82,29 @@
 
         <main class="py-4">
             <div class="container-fluid">
+                
+                @if(!empty($app_flash_data))
+                    @if(is_array($app_flash_data) && !empty($app_flash_data['message']))
+                        <div class="flash-message">
+                            @if(!empty($app_flash_data['wrapped']))
+                                {!! $app_flash_data['message'] !!}
+                            @else
+                                @if(array_key_exists('status', $app_flash_data))
+                                    @if($app_flash_data['status'] === true)
+                                        @include('components.messages.success', ['message' => $app_flash_data['message']])
+                                    @else
+                                        @include('components.messages.danger', ['message' => $app_flash_data['message']])
+                                    @endif
+                                @else
+                                    <div class="alert alert-primary">
+                                        {{ $app_flash_data['message'] }}
+                                    </div>
+                                @endif
+                            @endif
+                        </div>
+                    @endif
+                @endif
+                
                 <div id="top-message"></div>
             </div>
             

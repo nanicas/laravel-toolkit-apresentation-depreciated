@@ -14,11 +14,11 @@
 
     @if(isset($data['row']) && !empty($data['row']))
         @php $id = $data['row']->getId(); @endphp
-        <form id="crud-form" action="{{ route($screen.'.update', $id ) }}" method="POST">
+        <form id="crud-form" action="{{ route($full_screen.'.update', $id ) }}" method="POST">
             @method('PUT')
             <input type="hidden" name="id" value="{{ $id }}"/>
     @else
-        <form id="crud-form" action="{{ route($screen.'.store') }}" method="POST">
+        <form id="crud-form" action="{{ route($full_screen.'.store') }}" method="POST">
     @endif
         @csrf
 

@@ -1,6 +1,6 @@
 @if (!empty($messages))
     <div class="alert alert-danger" role="alert">
-        <ul>
+        <ul class="mb-0">
             @foreach ($messages as $message)
                 <li>{{ $message }}</li>
             @endforeach

@@ -8,7 +8,7 @@
     @endif
     
     @if(!isset($config['create_option']) || $config['create_option'] === true)
-        @yield('create_link', \View::make('layouts.crud.create_link', compact('screen')))
+        @yield('create_link', \View::make('layouts.crud.create_link', compact('full_screen')))
     @endif
 
     @if($page_is_list)

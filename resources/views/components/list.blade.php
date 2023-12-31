@@ -10,7 +10,7 @@
 
 @if(!isset($config['create_option']) || $config['create_option'] === true)
     <div class="text-right">
-        <a class="btn btn-success" href="{{ route($screen.'.create') }}">Criar novo registro</a>
+        <a class="btn btn-success" href="{{ route($full_screen.'.create') }}">Criar novo registro</a>
     </div><br>
 @endif
 

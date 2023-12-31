@@ -45,19 +45,23 @@
                 </nav>
                 -->
 
-                @if(!empty($flash_data))
-                    @if(is_array($flash_data) && !empty($flash_data['message']))
+                @if(!empty($dashboard_flash_data))
+                    @if(is_array($dashboard_flash_data) && !empty($dashboard_flash_data['message']))
                         <div class="flash-message">
-                            @if(array_key_exists('status', $flash_data))
-                                @if($flash_data['status'] === true)
-                                    @include('components.messages.success', ['message' => $flash_data['message']])
-                                @else
-                                    @include('components.messages.danger', ['message' => $flash_data['message']])
-                                @endif
+                            @if(!empty($dashboard_flash_data['wrapped']))
+                                {!! $dashboard_flash_data['message'] !!}
                             @else
-                                <div class="alert alert-primary">
-                                    {{ $flash_data['message'] }}
-                                </div>
+                                @if(array_key_exists('status', $dashboard_flash_data))
+                                    @if($dashboard_flash_data['status'] === true)
+                                        @include('components.messages.success', ['message' => $dashboard_flash_data['message']])
+                                    @else
+                                        @include('components.messages.danger', ['message' => $dashboard_flash_data['message']])
+                                    @endif
+                                @else
+                                    <div class="alert alert-primary">
+                                        {{ $dashboard_flash_data['message'] }}
+                                    </div>
+                                @endif
                             @endif
                         </div>
                     @endif
