@@ -26,5 +26,7 @@
         <div class="error-details">
             {!! $message !!}
         </div>
+
+        <a href="{{ route('home') }}">Página inicial</a>
     </div>
 @endsection
