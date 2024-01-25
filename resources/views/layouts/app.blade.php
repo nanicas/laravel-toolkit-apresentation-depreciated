@@ -41,9 +41,15 @@
 
                     </ul>
 
+                    @php $currentRouteName = Route::currentRouteName(); @endphp
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
+                        @if (Route::has('site') && $currentRouteName != 'site')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('site') }}">Site</a>
+                            </li>
+                        @endif
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -53,10 +59,16 @@
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Registrar-se</a>
+                                    <a class="nav-link" href="{{ route('register', (!empty($register_params)) ? $register_params : []) }}">Registrar-se</a>
                                 </li>
                             @endif
                         @else
+                            @if ($currentRouteName == 'site')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
+                                </li>
+                            @endif
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
