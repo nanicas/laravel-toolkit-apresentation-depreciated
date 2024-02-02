@@ -4,8 +4,6 @@ var LIST_CRUD = (function () {
 
     function load() {
 
-        DASHBOARD.load();
-
         state.datatable = null;
         state.crudListBox = $('#crud-list');
         state.table = $('table', state.crudListBox);
