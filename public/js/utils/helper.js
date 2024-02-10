@@ -38,12 +38,16 @@ var HELPER = (function () {
         return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, replaceStr);
     }
 
-    function extractDatetimeString(date) {
-        dateObject = new Date(date);
+    function extractStringDate(date) {
+        var data = date.split('-');
 
-        var year = dateObject.getFullYear().toString(),
-                month = dateObject.getMonth().toString(),
-                day = dateObject.getDate().toString();
+        var year = data[0],
+            month = data[1],
+            day = data[2];
+
+        var dateObject = new Date(
+            parseInt(year), (parseInt(month) - 1), parseInt(day)
+        );
 
         if (month.length == 1) {
             month = '0' + month;
@@ -52,7 +56,7 @@ var HELPER = (function () {
             day = '0' + day;
         }
 
-        dateAsString = year + '-' + month + '-' + day;
+        var dateAsString = year + '-' + month + '-' + day;
 
         return {dateObject, dateAsString};
     }
@@ -138,7 +142,7 @@ var HELPER = (function () {
         behaviorOnSubmitNoForm,
         nl2br,
         getConfigSPPhoneMask,
-        extractDatetimeString,
+        extractStringDate,
         initSelect2,
         scrollMaximumOnTop
     };
