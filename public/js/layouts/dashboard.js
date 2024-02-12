@@ -4,20 +4,20 @@ var DASHBOARD = (function () {
     var callbacks = {};
 
     function behaviorOnSubmitNoForm(clicked, data, callback, personalizedConfig) {
-        
+
         if (typeof (personalizedConfig) == 'undefined') {
             personalizedConfig = {}
         }
-        
+
         var config = {...{
-            isModal: true
-        }, personalizedConfig};
-        
-        HELPER.behaviorOnSubmitNoForm(clicked, data, function(serverResponse) {
+                    isModal: true
+            }, personalizedConfig};
+
+        HELPER.behaviorOnSubmitNoForm(clicked, data, function (serverResponse) {
             if (config.isModal) {
                 state.fastResultBox.html(serverResponse.response.message);
             }
-            
+
             callback(serverResponse);
         });
     }
@@ -146,14 +146,41 @@ var DASHBOARD = (function () {
         window.dispatchEvent(resizeEvent);
     }
 
-    function setTopMessage(message, type) {
-        state.topMessageElement.removeClass('none');
-        state.topMessageElement.html(message);
+    function beforeSetMessage(element) {
+        if (element.hasClass('none')) {
+            element.removeClass('none');
+        }
+        if (!element.is(':visible')) {
+            element.show();
+        }
     }
 
-    function setBottomMessage(message) {
-        state.bottomMessageElement.removeClass('none');
+    function afterSetMessage(element, config) {
+        if (config.withFadeOut) {
+            element.fadeOut(5000);
+        }
+    }
+
+    function setTopMessage(message, config) {
+        beforeSetMessage(state.topMessageElement);
+
+        state.topMessageElement.html(message);
+
+        afterSetMessage(
+            state.topMessageElement,
+            (typeof config != 'object') ? {} : config
+        );
+    }
+
+    function setBottomMessage(message, config) {
+        beforeSetMessage(state.bottomMessageElement);
+
         state.bottomMessageElement.html(message);
+
+        afterSetMessage(
+            state.bottomMessageElement,
+            (typeof config != 'object') ? {} : config
+        );
     }
 
     return {
@@ -172,5 +199,3 @@ var DASHBOARD = (function () {
         behaviorOnSubmitNoForm,
     };
 })();
-
-//DASHBOARD = DASHBOARD();

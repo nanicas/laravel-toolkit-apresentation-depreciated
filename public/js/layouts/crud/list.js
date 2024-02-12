@@ -12,7 +12,9 @@ var LIST_CRUD = (function () {
             var tr = $(this).parents('tr');
 
             HELPER.behaviorOnSubmit(e, $(this), function (data) {
-                DASHBOARD.setTopMessage(data.response.message);
+                DASHBOARD.setTopMessage(data.response.message, {
+                    withFadeOut: true
+                });
 
                 if (!data.status) {
                     return;

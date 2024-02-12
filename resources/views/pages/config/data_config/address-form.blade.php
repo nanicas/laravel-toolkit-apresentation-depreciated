@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label for="email[]">Email</label>
+                        <label for="email[]">E-mail</label>
                         <input maxlength="60" type="text" class="form-control" name="email[]" value="{{ $isUpdate ? $data->getEmail() : '' }}">
                     </div>
                 </div>
