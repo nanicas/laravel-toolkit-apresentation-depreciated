@@ -4,6 +4,9 @@
 .navbar-brand .feather {
     vertical-align: sub;
 }
+.navbar-brand img {
+    max-height: 50px;
+}
 .vertical-center {
     min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
     display: flex;
